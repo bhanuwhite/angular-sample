@@ -1,0 +1,155 @@
+<!-- Start Configuration Model -->
+<div class="modal_check_remove custom-modal">
+  <input id="modal_configuration" type="checkbox" name="modal" tabindex="1">
+  <div class="modal__overlay">
+    <label for="modal_configuration" class="overlay-close">&#10006;</label>
+    <div class="modal__box card">
+      <h3 class="text_center mt-3 mb-0">Configuration</h3>
+      <!--  Custom Tabs Vertical Starts  -->
+      <div class="nav-tabs-vertical card-block custom-tabs-vertical">
+        <ul class="nav nav-tabs nav nav-tabs mr-4 mb-4" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" href="javascript: void(0);" data-toggle="tab" data-target="#manageInvite">
+            Manage Invite
+          </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="javascript: void(0);" data-toggle="tab" data-target="#newsLetter">
+            Newsletter
+          </a>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="javascript: void(0);" data-toggle="tab" data-target="#profile">
+            Profile
+          </a>
+          </li>
+        </ul>
+        <div class="tab-content padding-vertical-10">
+          <div class="tab-pane active" id="manageInvite">
+            <div class="card">
+              <div class="card-block paddingbottom2 pt-0 pb-0">
+                <div class="table-responsive">
+                  <table class="table m-0">
+                    <tbody>
+                      <tr class="table mb-0 table_main" *ngFor="let inviteLists of inviteList">
+                        <td class="padding10" width="40%">
+                          <p class="font_middle f-bold mt-3 mb-1">{{inviteLists.FullName}}</p>
+                          <p class="font_middle">
+                            <a href="mailto:{{inviteLists.Email}}">{{inviteLists.Email}}</a>
+                          </p>
+                        </td>
+                        <td width="40%">
+                          <p class="font_middle mt-3 mb-1">Pending</p>
+                          <p class="font_middle">Last sent : {{inviteLists.LastInvitationDate | date:"medium"}}</p>
+                        </td>
+                        <td class="text_center" width="20%">
+                          <div class="btn-group">
+                            <button class="btn dropdown-toggle no_border p-0" data-toggle="dropdown" type="button"> 
+                            <i class="fa fa-ellipsis-v morehover fs-18"></i>
+                          </button>
+                            <ul class="dropdown-menu dropdown-menu-right" style="margin-top: 11px;">
+                              <a class="dropdown-item font_small" (click)="resendInvite(inviteLists)">Resend Invite</a>
+                              <a class="dropdown-item font_small"  (click)="cancelInvite(inviteLists)">Cancel Invite</a>
+                            </ul>
+                          </div>
+                        </td>
+                      </tr>
+                      </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="add-invite">
+              <p class="plus"><i class="fa plusicon"></i></p>
+            </div>
+          </div>
+          <div class="tab-pane" id="newsLetter">
+
+            <div class="card">
+              <div class="card-block paddingbottom2">
+                <div class="table-responsive">
+                  <table class="table m-0" *ngFor="let newsLettervalue of newsLetterArray">
+                    <tbody>
+
+                      <tr class="table mb-0 table_main">
+                        <td class="padding10" width="100%">
+
+                          <div class="widget-check">
+                            <label>
+                            <input class="radio-custom" name="newsLetterName" [(ngModel)]="newsLetterName" type="radio"> 
+                          </label>
+                            <strong>{{newsLettervalue[0].Key1 | translate}}</strong>
+                          </div>
+
+                          <div class="form-check">
+                            <label class="form-check-label font_middle">
+                            Weekly email about what's new in your company.
+                          </label>
+                          </div>
+
+                          <div class="form-check">
+                            <label class="form-check-label font_middle">
+                            Stay in the loop about new pepole, company news and status updates.
+                          </label>
+                          </div>
+
+                        </td>
+                      </tr>
+
+                      <tr class="table mb-0 table_main">
+                        <td class="padding10" width="100%">
+
+                          <div class="form-check mt-3" *ngFor="let newsLetter of newsLettervalue">
+                            <div class="widget-check">
+                              <label>
+                                <input class="checkbox-custom" [(ngModel)]="newsLetter.Value" type="checkbox"> 
+                            </label> <span class="font_middle">  {{newsLetter.Key2 | translate}} </span>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="tab-pane" id="custom">
+            <div class="card">
+              <div class="card-block paddingbottom2">
+                <p>
+                  Faciendi denique miserius iudico, significet ingenii adduci angere efficit linguam. Delectatum copulatas solemus tenere legam
+                  ignaviamque diis peccant ornamenta videro, adquiescere bonorum quisquam ceramico minime quodsi corporisque.
+                  Nostri pauca gravioribus reici solvantur, angoribus naturalem sed epicurei occultum sola institutionem
+                  meminerunt quem fonte, confirmat. Cui eodem perspecta vim solis innumerabiles, videatur status qui quanto
+                  sapientiam nomini honestum, comit sumitur nati via.
+                </p>
+              </div>
+            </div>
+
+          </div>
+          <div class="tab-pane" id="profile">
+
+            <div class="card">
+              <div class="card-block paddingbottom2">
+                <form class="form">
+                  <div class="form-group">
+                    <label for="companyName" class="font_middle f-bold">Company Name</label>
+                    <input type="text" class="form-control" name="companyName" id="companyName" (blur)="updateCompanyName()" [(ngModel)]="companyName">
+                  </div>
+                  <div class="form-group text-center">
+                    <button class="btn btn-danger btn-sm btn-danger-outline" type="submit" (click)="deleteAccount()">Delete Account</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--  Custom Tabs Vertical Ends  -->
+    </div>
+  </div>
+</div>

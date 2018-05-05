@@ -1,0 +1,167 @@
+<div class="cat__top-bar">
+  <!-- left aligned items -->
+  <div class="cat__top-bar__left">
+    <div class="menu-bar-icon">
+      <a class="showleftmenu-togle">
+           <i class="fa fa-bars" ></i>
+         </a>
+    </div>
+    <div class="cat__top-bar__logo">
+      <a>
+        <img src="assets/modules/dummy-assets/common/img/icon/svg_icon/connect-teal.svg" />
+      </a>
+    </div>
+  </div>
+  <!-- Start Right Side Menu -->
+  <div class="cat__top-bar__right">
+    <div class="cat__top-bar__item" style="padding-top: 2px;">
+      <label for="modal_checkbox" class="searchicon" placement="bottom" ngbTooltip="Search"><i class="fa searchtopicon fs-17" aria-hidden="true"></i></label>
+    </div>
+    <!-- Start Chat and Task -->
+    <div class="cat__top-bar__item">
+      <div class="cat__top-bar__menu-button cat__menu-right1__action--menu-toggle chattask_mobile_view" style="padding-top: 4px;">
+        <a href="javascript: void(0);" placement="bottom" ngbTooltip="Chats &amp; Tasks">
+              <i class="fa chat_tasktopicon" aria-hidden="true" ></i>
+              <i class="fa chat_tasktopicon_right" aria-hidden="true" ></i>
+            </a>
+      </div>
+    </div>
+    <!-- End Chat and Task -->
+
+    <!-- Start Notification -->
+    <div class="cat__top-bar__item">
+      <div class="cat__top-bar__menu-button cat__menu-right__action--menu-toggle" style="padding-top: 1px;">
+        <a href="javascript: void(0);" class="notification_text" placement="bottom" [ngbTooltip]="notification_tooltip" (click)="changeTooltip();">
+              <i class="fa notificationtopicon fs-17" aria-hidden="true"></i>
+            </a>
+      </div>
+    </div>
+    <!-- End Notification -->
+
+    <!-- Start Help & Support -->
+    <div class="cat__top-bar__item tooltiphelperremove">
+      <div class="toogletooltiphelper dropdown" ngbTooltip="Help & Support" placement="bottom" style="margin-top: -2px;">
+        <a href="javascript: void(0);" class="dropdown-toggle removetoggle infoicon" data-toggle="dropdown" aria-expanded="false">
+            <i class="fa helpsupporttopicon fs-20" aria-hidden="true"></i></a>
+        <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="" role="menu">
+          <a class="dropdown-item fs-12" href="https://www.eworkplaceapps.com/knowledgebase" target="_blank">
+              <label for="modal_contact_us" class="d-block">{{'Knowledge_base' | translate}}</label>
+              </a>
+          <a class="dropdown-item fs-12" href="javascript:void(0)">
+                <label for="modal_feedback" class="d-block">{{'Feedback' | translate}}</label></a>
+          <a class="dropdown-item fs-12" (click)="openAboutmodel();">{{'About' | translate}}</a>
+        </ul>
+      </div>
+    </div>
+    <!-- End Help & Support -->
+
+    <!-- Start User Profile -->
+    <div class="cat__top-bar__item">
+      <div class="dropdown cat__top-bar__avatar-dropdown">
+        <a href="javascript: void(0);" class="dropdown-toggle infoicon  padding-right10 margin_left-8" data-toggle="dropdown" aria-expanded="false">
+                <span class="cat__top-bar__avatar" href="javascript:void(0);">
+                    <img *ngIf="userinfo.TumbnailUrl!=null" [src]="userinfo.TumbnailUrl" />
+                    <div class=" text_center d-block mx-auto backgrounddarkgray" *ngIf="userinfo.TumbnailUrl==null">
+                          <p class="textuppercase profiletextname" >{{userinfo.Abbreviation}}</p>
+                      </div>
+                </span>
+            </a>
+        <div class="dropdown-menu dropdown-menu-right myprofiles" id="Myprofile" aria-labelledby="" role="menu" style="min-width: 26rem !important;">
+          <span class="arrow-up"></span>
+          <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-4 text_center avatar_padd">
+
+              <div class="avatar2 changepro">
+
+                <img (click)="openUserProfileSidebar()" *ngIf="userinfo.TumbnailUrl!=null" class="avatar2 br50 handpointer" [src]="userinfo.TumbnailUrl"
+                />
+                <div (click)="openUserProfileSidebar()" class=" text_center d-block mx-auto backgrounddarkgray imagename handpointer" *ngIf="userinfo.TumbnailUrl==null">
+                  <p class="imagewithname textuppercase">{{userinfo.Abbreviation}}</p>
+                </div>
+                <div class="changebg handpointer" (click)="doProfilePicChange()">
+                  <p class="cameraicon" data-placement="bottom" data-toggle="tooltip" title="" data-animation="false" data-original-title="Upload Image"><i class="fa fa-camera fs-14" aria-hidden="true"></i></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 col-sm-8 col-xs-8">
+              <div class="pic_text">
+                <p class="proname handpointer" (click)="openUserProfileSidebar()">{{userinfo.FullName}}</p>
+                <p class="margbott handpointer" (click)="openUserProfileSidebar()">{{userinfo.JobTitle}}</p>
+                <p class="margbott handpointer" (click)="openUserProfileSidebar()">{{userinfo.TenantName}}</p>
+                <!--<span class="badge badge-danger">Busy</span>-->
+              </div>
+            </div>
+          </div>
+          <div class="dropdown-divider"></div>
+          <div class="col-xl-12">
+            <div class="logout-wrapper">
+              <label for="modal_settings" class="btn btn-outline-till btn-sm font_small handpointer">{{'Settings' | translate}}</label>
+              <label *ngIf="userinfo.IsAdmin==true" for="modal_configuration" class="btn btn-outline-till btn-sm font_small handpointer"><i class="fa fa-cog"></i></label>
+
+              <div class="pull-right">
+                <button class="btn btn-outline-till btn-sm font_small handpointer top-bar-buttons" (click)="doLogout()">{{'Logout' | translate}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End User Profile -->
+    </div>
+    <!-- End Right Side Menu -->
+  </div>
+
+</div>
+
+<!-- Start search model -->
+<div class="modal_check_remove">
+  <input id="modal_checkbox" type="checkbox" name="modal" tabindex="1">
+  <div class="modal__overlay">
+    <label for="modal_checkbox" class="overlay-close">&#10006;</label>
+    <div class="modal__box">
+      <input type="text" class="full-width-search" placeholder="Search" />
+    </div>
+  </div>
+</div>
+<!-- End search model -->
+
+<!-- Start About Model -->
+<div class="modal fade modal-size-medium" id="About_modal" tabindex="-2" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog" style="margin: 5% auto;max-width:800px !important;" role="document">
+    <div class="modal-content text_center">
+      <div class="modal-header" style="border-color:transparent">
+        <div class="pull-right">
+          <span class="fa fa-times handpointer" style="font-size:1.14rem;position: absolute;right: 10px;" data-dismiss="modal"></span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-xl-12 padding0">
+            <div class="sidebar-div" style="padding: 50px 0px;">
+              <div class="text_center">
+                <img src="assets/modules/dummy-assets/common/img/ABOUT.png" style="width:200px;">
+              </div>
+              <div class="text_center">
+                <p class="connectversion font_middle">{{'ConnectVersion' | translate}}</p>
+              </div>
+              <div class="text_center">
+                <p class="about_copyright font_middle">{{'CopyRight' | translate}}</p>
+                <p class="about_reserved font_middle">{{'AllReserved' | translate}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End About Model -->
+
+<!-- Start Settings Model -->
+<settings></settings>
+<!-- End Settings Model -->
+<!-- Start Configuration Model -->
+<configurations></configurations>
+<!-- End Configuration Model -->
+<!-- Start Supports Models -->
+<help-support></help-support>
+<!-- End Supports Models -->
